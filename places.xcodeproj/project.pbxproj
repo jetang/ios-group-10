@@ -17,6 +17,7 @@
 		31AB7B771B53998A0099025E /* placesMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AB7B731B53998A0099025E /* placesMapViewController.m */; };
 		31AB7B781B53998A0099025E /* placesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AB7B751B53998A0099025E /* placesTableViewController.m */; };
 		31AB7B7A1B539CE70099025E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31AB7B791B539CE70099025E /* MapKit.framework */; };
+		31AB7B7D1B53A0230099025E /* facebookPlaces.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AB7B7C1B53A0230099025E /* facebookPlaces.m */; };
 		A1F3C80F0CAC61F7EF88C005 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4D7C6B084E452A50557348 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,8 @@
 		31AB7B741B53998A0099025E /* placesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = placesTableViewController.h; sourceTree = "<group>"; };
 		31AB7B751B53998A0099025E /* placesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = placesTableViewController.m; sourceTree = "<group>"; };
 		31AB7B791B539CE70099025E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		31AB7B7B1B53A0230099025E /* facebookPlaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = facebookPlaces.h; sourceTree = "<group>"; };
+		31AB7B7C1B53A0230099025E /* facebookPlaces.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = facebookPlaces.m; sourceTree = "<group>"; };
 		A3E1DCE1E0027F8917F44466 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DD4D7C6B084E452A50557348 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB1D773CDD1F83915AC6A70D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -97,12 +100,9 @@
 		31AB7B401B5381EE0099025E /* places */ = {
 			isa = PBXGroup;
 			children = (
-				31AB7B701B53998A0099025E /* placeDetailViewController.h */,
-				31AB7B711B53998A0099025E /* placeDetailViewController.m */,
-				31AB7B721B53998A0099025E /* placesMapViewController.h */,
-				31AB7B731B53998A0099025E /* placesMapViewController.m */,
-				31AB7B741B53998A0099025E /* placesTableViewController.h */,
-				31AB7B751B53998A0099025E /* placesTableViewController.m */,
+				31AB7B7B1B53A0230099025E /* facebookPlaces.h */,
+				31AB7B7C1B53A0230099025E /* facebookPlaces.m */,
+				31AB7B7E1B53A0300099025E /* views */,
 				31AB7B451B5381EE0099025E /* AppDelegate.h */,
 				31AB7B461B5381EE0099025E /* AppDelegate.m */,
 				31AB7B4B1B5381EE0099025E /* Main.storyboard */,
@@ -137,6 +137,19 @@
 				31AB7B5C1B5381EE0099025E /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		31AB7B7E1B53A0300099025E /* views */ = {
+			isa = PBXGroup;
+			children = (
+				31AB7B701B53998A0099025E /* placeDetailViewController.h */,
+				31AB7B711B53998A0099025E /* placeDetailViewController.m */,
+				31AB7B721B53998A0099025E /* placesMapViewController.h */,
+				31AB7B731B53998A0099025E /* placesMapViewController.m */,
+				31AB7B741B53998A0099025E /* placesTableViewController.h */,
+				31AB7B751B53998A0099025E /* placesTableViewController.m */,
+			);
+			name = views;
 			sourceTree = "<group>";
 		};
 		A433D5EFA9F7ADCA5097698D /* Frameworks */ = {
@@ -293,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				31AB7B471B5381EE0099025E /* AppDelegate.m in Sources */,
+				31AB7B7D1B53A0230099025E /* facebookPlaces.m in Sources */,
 				31AB7B771B53998A0099025E /* placesMapViewController.m in Sources */,
 				31AB7B781B53998A0099025E /* placesTableViewController.m in Sources */,
 				31AB7B441B5381EE0099025E /* main.m in Sources */,
