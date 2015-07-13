@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="OmT-kJ-eHT">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Places-->
@@ -85,7 +86,18 @@
                     <view key="view" contentMode="scaleToFill" id="QO1-it-kK9">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E4b-L4-TnC">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Pzc-Ta-P70" firstAttribute="top" secondItem="E4b-L4-TnC" secondAttribute="bottom" id="7pK-5H-dNH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="E4b-L4-TnC" secondAttribute="trailing" constant="-16" id="JMs-mf-Hi3"/>
+                            <constraint firstItem="E4b-L4-TnC" firstAttribute="top" secondItem="Pg9-T4-iQp" secondAttribute="bottom" id="Yy1-xe-SjU"/>
+                            <constraint firstItem="E4b-L4-TnC" firstAttribute="leading" secondItem="QO1-it-kK9" secondAttribute="leadingMargin" constant="-16" id="rkv-Uj-IXo"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="OQP-g4-gep"/>
                 </viewController>
