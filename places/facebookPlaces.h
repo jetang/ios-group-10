@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface facebookPlaces : NSObject
+@interface facebookPlaces : NSObject <CLLocationManagerDelegate>
 
 + (facebookPlaces *)getInstance;
 
