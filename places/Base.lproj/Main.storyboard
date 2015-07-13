@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Places-->
         <scene sceneID="jaR-E4-2Kf">
             <objects>
                 <tableViewController id="BBH-Du-OgV" sceneMemberID="viewController">
@@ -12,16 +12,86 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="S73-rb-TMV" detailTextLabel="O6I-pc-plG" style="IBUITableViewCellStyleSubtitle" id="7cj-BV-stb">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7cj-BV-stb" id="mSZ-LB-1Vg">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="S73-rb-TMV">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="O6I-pc-plG">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="LUu-5z-sbd" kind="show" trigger="accessoryAction" id="gNQ-oT-yev"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="BBH-Du-OgV" id="rBq-t2-YO0"/>
                             <outlet property="delegate" destination="BBH-Du-OgV" id="Tvz-iu-ccl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="7cS-Z8-hXE"/>
+                    <navigationItem key="navigationItem" title="Places" id="7cS-Z8-hXE">
+                        <barButtonItem key="rightBarButtonItem" title="Maps" id="UPF-uH-KNO">
+                            <connections>
+                                <segue destination="2nE-oV-qIc" kind="show" id="E9p-KB-0nM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dP5-Lz-Jpd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1310" y="557"/>
+        </scene>
+        <!--Place Detail-->
+        <scene sceneID="4vS-x0-Squ">
+            <objects>
+                <viewController id="LUu-5z-sbd" customClass="placeDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1cd-0d-ws2"/>
+                        <viewControllerLayoutGuide type="bottom" id="Noc-l6-Jaw"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7uH-5R-TNA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Place Detail" id="ji9-FF-Qh4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="91M-d0-4Y4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2125" y="557"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="qzq-xu-14R">
+            <objects>
+                <viewController id="2nE-oV-qIc" customClass="placesMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pg9-T4-iQp"/>
+                        <viewControllerLayoutGuide type="bottom" id="Pzc-Ta-P70"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QO1-it-kK9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Map" id="OQP-g4-gep"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ovl-5d-Thd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2125" y="1319"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rDo-9A-OKi">

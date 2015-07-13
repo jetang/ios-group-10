@@ -13,6 +13,9 @@
 		31AB7B4F1B5381EE0099025E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31AB7B4E1B5381EE0099025E /* Images.xcassets */; };
 		31AB7B521B5381EE0099025E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 31AB7B501B5381EE0099025E /* LaunchScreen.xib */; };
 		31AB7B5E1B5381EE0099025E /* placesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AB7B5D1B5381EE0099025E /* placesTests.m */; };
+		31AB7B761B53998A0099025E /* placeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AB7B711B53998A0099025E /* placeDetailViewController.m */; };
+		31AB7B771B53998A0099025E /* placesMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AB7B731B53998A0099025E /* placesMapViewController.m */; };
+		31AB7B781B53998A0099025E /* placesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 31AB7B751B53998A0099025E /* placesTableViewController.m */; };
 		A1F3C80F0CAC61F7EF88C005 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DD4D7C6B084E452A50557348 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +41,12 @@
 		31AB7B571B5381EE0099025E /* placesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = placesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		31AB7B5C1B5381EE0099025E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31AB7B5D1B5381EE0099025E /* placesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = placesTests.m; sourceTree = "<group>"; };
+		31AB7B701B53998A0099025E /* placeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = placeDetailViewController.h; sourceTree = "<group>"; };
+		31AB7B711B53998A0099025E /* placeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = placeDetailViewController.m; sourceTree = "<group>"; };
+		31AB7B721B53998A0099025E /* placesMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = placesMapViewController.h; sourceTree = "<group>"; };
+		31AB7B731B53998A0099025E /* placesMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = placesMapViewController.m; sourceTree = "<group>"; };
+		31AB7B741B53998A0099025E /* placesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = placesTableViewController.h; sourceTree = "<group>"; };
+		31AB7B751B53998A0099025E /* placesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = placesTableViewController.m; sourceTree = "<group>"; };
 		A3E1DCE1E0027F8917F44466 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		DD4D7C6B084E452A50557348 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB1D773CDD1F83915AC6A70D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -85,6 +94,12 @@
 		31AB7B401B5381EE0099025E /* places */ = {
 			isa = PBXGroup;
 			children = (
+				31AB7B701B53998A0099025E /* placeDetailViewController.h */,
+				31AB7B711B53998A0099025E /* placeDetailViewController.m */,
+				31AB7B721B53998A0099025E /* placesMapViewController.h */,
+				31AB7B731B53998A0099025E /* placesMapViewController.m */,
+				31AB7B741B53998A0099025E /* placesTableViewController.h */,
+				31AB7B751B53998A0099025E /* placesTableViewController.m */,
 				31AB7B451B5381EE0099025E /* AppDelegate.h */,
 				31AB7B461B5381EE0099025E /* AppDelegate.m */,
 				31AB7B4B1B5381EE0099025E /* Main.storyboard */,
@@ -274,7 +289,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				31AB7B471B5381EE0099025E /* AppDelegate.m in Sources */,
+				31AB7B771B53998A0099025E /* placesMapViewController.m in Sources */,
+				31AB7B781B53998A0099025E /* placesTableViewController.m in Sources */,
 				31AB7B441B5381EE0099025E /* main.m in Sources */,
+				31AB7B761B53998A0099025E /* placeDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
