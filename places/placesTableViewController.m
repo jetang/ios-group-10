@@ -7,7 +7,13 @@
 //
 
 #import "placesTableViewController.h"
+#import "facebookPlaces.h"
 
 @implementation placesTableViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [facebookPlaces getInstance];
+}
 
 @end

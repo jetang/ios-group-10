@@ -20,6 +20,10 @@
             p.currentCenter = CLLocationCoordinate2DMake(0.0, 0.0);
             locationManager = [[CLLocationManager alloc] init];
             locationManager.delegate = p;
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+            locationManager.distanceFilter = 50;
+            [locationManager requestWhenInUseAuthorization];
+            [locationManager startUpdatingLocation];
         }
     }
     return p;
