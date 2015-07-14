@@ -10,7 +10,7 @@
 #import "AFHTTPRequestOperationManager.h"
 
 // For DEMO
-NSString *apiURL = @"https://gist.githubusercontent.com/zordius/2c0d16406793b7c1c082/raw/eb9128537e9512687f0926cd54333fe78154b459/gistfile1.txt";
+NSString *apiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
 // Official API URL
 // NSString *apiURL = @"https://graph.facebook.com/search";
 
