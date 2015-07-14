@@ -7,6 +7,12 @@
 //
 
 #import "facebookPlaces.h"
+#import "AFHTTPRequestOperationManager.h"
+
+// For DEMO
+NSString *apiURL = @"https://gist.githubusercontent.com/zordius/2c0d16406793b7c1c082/raw/eb9128537e9512687f0926cd54333fe78154b459/gistfile1.txt";
+// Official API URL
+// NSString *apiURL = @"https://graph.facebook.com/search";
 
 @implementation facebookPlaces
 
@@ -18,6 +24,7 @@
         if (p == nil) {
             p = [[facebookPlaces alloc] init];
             p.currentCenter = CLLocationCoordinate2DMake(0.0, 0.0);
+            p.keyword = nil;
             locationManager = [[CLLocationManager alloc] init];
             locationManager.delegate = p;
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
@@ -29,7 +36,34 @@
     return p;
 }
 
-// https://graph.facebook.com/search?q=coffee&type=place&center=25.038448,121.548656&distance=5000&access_token=xxxx
+- (void)queryPlaces {
+    // https://graph.facebook.com/search?q=coffee&type=place&center=25.038448,121.548656&distance=5000&access_token=xxxx
+
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+
+    // allow gist error content type, can be removed when move to standard API
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+
+    NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
+    [parameters setObject:@"place" forKey:@"type"];
+    [parameters setObject:[NSString stringWithFormat:@"%f,%f", self.currentCenter.latitude, self.currentCenter.longitude] forKey:@"center"];
+    if ([self.keyword length]) {
+        [parameters setObject:self.keyword forKey:@"q"];
+    }
+
+    // go https://developers.facebook.com/tools/explorer to copy an access token then replace xxx
+    // Do not git commit your access token here!
+    //[parameters setObject:@"xxx" forKey:@"access_token"];
+
+    [manager GET:apiURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"call place api success!");
+        self.places = responseObject[@"data"];
+        NSLog(@"----API result: %@", self.places);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"call facebook api error! %@", error);
+    }];
+}
 
 #pragma mark - CLLocationManagerDelegate
 
@@ -40,8 +74,12 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
+    BOOL willQuery = (self.currentCenter.longitude == 0.0) && (self.currentCenter.longitude == 0.0);
     NSLog(@"didUpdateToLocation: %@", newLocation);
     self.currentCenter = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+    if (willQuery) {
+        [self queryPlaces];
+    }
 }
 
 @end

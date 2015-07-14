@@ -16,5 +16,7 @@
 
 @property  CLLocationCoordinate2D currentCenter;
 @property (strong, nonatomic) NSMutableArray *places;
+@property (strong, nonatomic) NSString *keyword;
+
 
 @end
