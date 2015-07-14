@@ -13,7 +13,43 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [facebookPlaces getInstance];
+    [[facebookPlaces getInstance] addObserver:self
+                  forKeyPath:@"places"
+                     options:0
+                     context:nil];
+}
+
+- (void)observeValueForKeyPath:(NSString*)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary*)change
+                       context:(void*)context
+{
+    if ([keyPath isEqualToString:@"places"]) {
+        [self.tableView reloadData];
+    } else {
+        [super observeValueForKeyPath:keyPath
+                             ofObject:object
+                               change:change
+                              context:context];
+    }
+}
+
+#pragma mark - Table view data source
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[facebookPlaces getInstance].places count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"defaultCell" forIndexPath:indexPath];
+    NSMutableDictionary *data = [facebookPlaces getInstance].places[indexPath.row];
+
+    cell.textLabel.text = data[@"name"];
+    cell.detailTextLabel.text = data[@"location"][@"street"];
+    return cell;
 }
 
 @end
