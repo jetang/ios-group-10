@@ -10,7 +10,7 @@
 #import "AFHTTPRequestOperationManager.h"
 
 // For DEMO
-NSString *apiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
+NSString *apiURL = @"https://salagadoola.github.io/sample.json";
 // Official API URL
 // NSString *apiURL = @"https://graph.facebook.com/search";
 
@@ -42,8 +42,8 @@ NSString *apiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
 
-    // allow gist error content type, can be removed when move to standard API
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+    // match with the application type returned from github.io, perhaps could be removed when move to standard API
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"application/json"];
 
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:@"place" forKey:@"type"];
