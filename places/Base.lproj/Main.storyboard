@@ -100,6 +100,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="OQP-g4-gep"/>
+                    <connections>
+                        <outlet property="mapView" destination="E4b-L4-TnC" id="Ba7-Nz-jHi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ovl-5d-Thd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
