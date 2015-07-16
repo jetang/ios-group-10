@@ -13,8 +13,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(24.6850021,121.8235917);
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 1000, 1000);
+    CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(25.04,121.55);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 10000, 10000);
     [self.mapView setRegion:region animated:YES];
 }
 
