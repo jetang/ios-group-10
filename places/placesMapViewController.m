@@ -19,9 +19,13 @@
     [self.mapView setRegion:region animated:YES];
     
     [[facebookPlaces getInstance] addObserver:self
-                  forKeyPath:@"places"
-                     options:0
-                     context:nil];
+                                   forKeyPath:@"places"
+                                      options:0
+                                      context:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
     [[facebookPlaces getInstance] queryPlaces];
 }
 
@@ -31,21 +35,30 @@
                        context:(void*)context
 {
     if ([keyPath isEqualToString:@"places"]) {
-        NSMutableDictionary *data = [facebookPlaces getInstance].places[0];
-        NSMutableDictionary *location = data[@"location"];
-        MKPointAnnotation *myAnnotation = [[MKPointAnnotation alloc] init];
-        myAnnotation.coordinate = CLLocationCoordinate2DMake([location[@"latitude"] doubleValue], [location[@"longitude"] doubleValue]);
-        myAnnotation.title = data[@"name"];
-        //myAnnotation.subtitle = @"Best Pizza in Town";
+        NSMutableArray *annotations = [[NSMutableArray alloc] init];
+
+        for (id data in [facebookPlaces getInstance].places) {
+            NSMutableDictionary *location = data[@"location"];
+            MKPointAnnotation *myAnnotation = [[MKPointAnnotation alloc] init];
+            myAnnotation.coordinate = CLLocationCoordinate2DMake([location[@"latitude"] doubleValue], [location[@"longitude"] doubleValue]);
+            myAnnotation.title = data[@"name"];
+            [annotations addObject:myAnnotation];
+
+            NSLog(@"name %@", data[@"name"]);
+        }
         
-        NSLog(@"name %@", data[@"name"]);
-        [self.mapView addAnnotation:myAnnotation];
+        [self.mapView addAnnotations:annotations];
     } else {
         [super observeValueForKeyPath:keyPath
                              ofObject:object
                                change:change
                               context:context];
     }
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[facebookPlaces getInstance] removeObserver:self forKeyPath:@"places"];
 }
 
 @end
