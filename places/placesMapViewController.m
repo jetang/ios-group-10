@@ -22,6 +22,7 @@
                   forKeyPath:@"places"
                      options:0
                      context:nil];
+    [[facebookPlaces getInstance] queryPlaces];
 }
 
 - (void)observeValueForKeyPath:(NSString*)keyPath
@@ -30,10 +31,15 @@
                        context:(void*)context
 {
     if ([keyPath isEqualToString:@"places"]) {
-        // [self.tableView reloadData];
-        
         NSMutableDictionary *data = [facebookPlaces getInstance].places[0];
+        NSMutableDictionary *location = data[@"location"];
+        MKPointAnnotation *myAnnotation = [[MKPointAnnotation alloc] init];
+        myAnnotation.coordinate = CLLocationCoordinate2DMake([location[@"latitude"] doubleValue], [location[@"longitude"] doubleValue]);
+        myAnnotation.title = data[@"name"];
+        //myAnnotation.subtitle = @"Best Pizza in Town";
+        
         NSLog(@"name %@", data[@"name"]);
+        [self.mapView addAnnotation:myAnnotation];
     } else {
         [super observeValueForKeyPath:keyPath
                              ofObject:object

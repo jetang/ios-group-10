@@ -13,6 +13,7 @@
 @interface facebookPlaces : NSObject <CLLocationManagerDelegate>
 
 + (facebookPlaces *)getInstance;
+- (void)queryPlaces;
 
 @property  CLLocationCoordinate2D currentCenter;
 @property (strong, nonatomic) NSMutableArray *places;
