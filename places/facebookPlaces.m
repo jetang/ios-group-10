@@ -8,7 +8,7 @@
 
 #import "facebookPlaces.h"
 #import "AFHTTPRequestOperationManager.h"
-#define CLCOORDINATE_EPSILON 0.005f
+#define CLCOORDINATE_EPSILON 0.0005f
 #define CLCOORDINATES_EQUAL( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_EPSILON)
 
 // For DEMO

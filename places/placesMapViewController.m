@@ -15,7 +15,7 @@
 - (void)viewDidLoad {
     facebookPlaces *places = [facebookPlaces getInstance];
     [super viewDidLoad];
-    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(places.currentCenter, 10000, 10000);
+    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(places.currentCenter, 100, 100);
     [self.mapView setRegion:region animated:YES];
     self.mapView.delegate = self;
     [self updatePlaces];
