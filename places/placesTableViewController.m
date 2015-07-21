@@ -7,6 +7,7 @@
 //
 
 #import "placesTableViewController.h"
+#import "placeDetailViewController.h"
 #import "facebookPlaces.h"
 
 @implementation placesTableViewController
@@ -50,6 +51,16 @@
     cell.textLabel.text = data[@"name"];
     cell.detailTextLabel.text = data[@"location"][@"street"];
     return cell;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showPlaceDetail"]) {
+        placeDetailViewController *detailViewController = segue.destinationViewController;
+
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        NSMutableDictionary *data = [facebookPlaces getInstance].places[indexPath.row];
+        detailViewController.data = data;
+    }
 }
 
 @end
