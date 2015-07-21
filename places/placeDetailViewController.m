@@ -11,6 +11,7 @@
 @implementation placeDetailViewController
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     self.titleLabel.text = self.data[@"name"];
     self.streetLabel.text = self.data[@"location"][@"street"];
     self.cityLabel.text = self.data[@"location"][@"city"];
