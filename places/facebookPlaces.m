@@ -12,9 +12,9 @@
 #define CLCOORDINATES_EQUAL( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_EPSILON)
 
 // For DEMO
-NSString *apiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
+NSString *fakeApiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
 // Official API URL
-// NSString *apiURL = @"https://graph.facebook.com/search";
+NSString *apiURL = @"https://graph.facebook.com/search";
 
 @implementation facebookPlaces
 
@@ -40,8 +40,25 @@ NSString *apiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
     return p;
 }
 
+- (NSString *)getAccessToken {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+
+    // go https://developers.facebook.com/tools/explorer to copy an access token then replace xxx
+    // execute these 1 time then the access token will be saved in your simulator
+    // Do not git commit your access token here!
+    // ------------------------------------------------------------------
+    /*
+    [userDefaults setValue:@"xxx" forKey:@"accessToken"];
+    [userDefaults synchronize];
+     */
+    // ------------------------------------------------------------------
+
+    return [userDefaults stringForKey:@"accessToken"];
+}
+
 - (void)queryPlaces {
     // https://graph.facebook.com/search?q=coffee&type=place&center=25.038448,121.548656&distance=5000&access_token=xxxx
+    NSString *token = [self getAccessToken];
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -56,11 +73,11 @@ NSString *apiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
         [parameters setObject:self.keyword forKey:@"q"];
     }
 
-    // go https://developers.facebook.com/tools/explorer to copy an access token then replace xxx
-    // Do not git commit your access token here!
-    //[parameters setObject:@"xxx" forKey:@"access_token"];
+    if (token) {
+        [parameters setObject:token forKey:@"access_token"];
+    }
 
-    [manager GET:apiURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [manager GET:token ? apiURL : fakeApiURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"call place api success!");
         self.places = responseObject[@"data"];
 //        NSLog(@"----API result: %@", self.places);
