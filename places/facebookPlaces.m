@@ -24,6 +24,7 @@ NSString *apiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
         if (p == nil) {
             p = [[facebookPlaces alloc] init];
             p.currentCenter = CLLocationCoordinate2DMake(0.0, 0.0);
+            p.autoGPSTracking = true;
             p.keyword = nil;
             locationManager = [[CLLocationManager alloc] init];
             locationManager.delegate = p;
@@ -33,6 +34,7 @@ NSString *apiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
             [locationManager startUpdatingLocation];
         }
     }
+
     return p;
 }
 
@@ -65,6 +67,13 @@ NSString *apiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
     }];
 }
 
+-(void)setCurrentCenter:(CLLocationCoordinate2D)currentCenter {
+    if ((_currentCenter.longitude != currentCenter.longitude) && (_currentCenter.latitude != currentCenter.latitude)) {
+        _currentCenter = currentCenter;
+        [self queryPlaces];
+    }
+}
+
 #pragma mark - CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
@@ -74,12 +83,7 @@ NSString *apiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    BOOL willQuery = (self.currentCenter.longitude == 0.0) && (self.currentCenter.longitude == 0.0);
-    NSLog(@"didUpdateToLocation: %@", newLocation);
     self.currentCenter = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-    if (willQuery) {
-        [self queryPlaces];
-    }
 }
 
 @end
