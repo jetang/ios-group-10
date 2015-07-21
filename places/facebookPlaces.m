@@ -8,6 +8,8 @@
 
 #import "facebookPlaces.h"
 #import "AFHTTPRequestOperationManager.h"
+#define CLCOORDINATE_EPSILON 0.005f
+#define CLCOORDINATES_EQUAL( coord1, coord2 ) (fabs(coord1.latitude - coord2.latitude) < CLCOORDINATE_EPSILON && fabs(coord1.longitude - coord2.longitude) < CLCOORDINATE_EPSILON)
 
 // For DEMO
 NSString *apiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
@@ -61,14 +63,16 @@ NSString *apiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
     [manager GET:apiURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"call place api success!");
         self.places = responseObject[@"data"];
-        NSLog(@"----API result: %@", self.places);
+//        NSLog(@"----API result: %@", self.places);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"call facebook api error! %@", error);
     }];
 }
 
 -(void)setCurrentCenter:(CLLocationCoordinate2D)currentCenter {
-    if ((_currentCenter.longitude != currentCenter.longitude) && (_currentCenter.latitude != currentCenter.latitude)) {
+    if (!CLCOORDINATES_EQUAL(currentCenter, _currentCenter)) {
+        NSLog(@"query api! %f, %f", _currentCenter.latitude, _currentCenter.longitude);
+        NSLog(@"query api! %f, %f", currentCenter.latitude, currentCenter.longitude);
         _currentCenter = currentCenter;
         [self queryPlaces];
     }
