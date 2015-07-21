@@ -44,7 +44,7 @@ NSString *apiURL = @"https://graph.facebook.com/search";
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
     // go https://developers.facebook.com/tools/explorer to copy an access token then replace xxx
-    // execute these once then the access token will be saved in your simulator
+    // execute these 2 lines ONLY ONCE then the access token will be saved in your simulator
     // Do not git commit your access token here!
     // ------------------------------------------------------------------
     /*
