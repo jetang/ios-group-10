@@ -54,8 +54,7 @@
     [self.mapView addAnnotations:annotations];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
+- (void)dealloc {
     [[facebookPlaces getInstance] removeObserver:self forKeyPath:@"places"];
 }
 
