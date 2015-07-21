@@ -9,5 +9,16 @@
 #import "placeDetailViewController.h"
 
 @implementation placeDetailViewController
+@synthesize data;
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.nameLabel.text = data[@"name"];
+    self.locationStreetLabel.text = data[@"location"][@"street"];
+    self.locationCityLabel.text = data[@"location"][@"city"];
+    self.locationCountryLabel.text = data[@"location"][@"country"];
+    self.locationZipLabel.text = data[@"location"][@"zip"];
+    //NSLog(@"self.data: %@", self.data);
+}
 
 @end
