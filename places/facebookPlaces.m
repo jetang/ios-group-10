@@ -44,7 +44,7 @@ NSString *apiURL = @"https://graph.facebook.com/search";
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 
     // go https://developers.facebook.com/tools/explorer to copy an access token then replace xxx
-    // execute these 1 time then the access token will be saved in your simulator
+    // execute these once then the access token will be saved in your simulator
     // Do not git commit your access token here!
     // ------------------------------------------------------------------
     /*
@@ -63,8 +63,10 @@ NSString *apiURL = @"https://graph.facebook.com/search";
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
 
-    // match with the application type returned from github.io, perhaps could be removed when move to standard API
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+    // match with the application type returned from github.io or dropbox, useless to standard API
+    if (!token) {
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+    }
 
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:@"place" forKey:@"type"];
