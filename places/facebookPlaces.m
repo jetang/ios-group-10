@@ -42,7 +42,7 @@ NSString *apiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
 
-    // allow gist error content type, can be removed when move to standard API
+    // match with the application type returned from github.io, perhaps could be removed when move to standard API
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
 
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
