@@ -8,6 +8,7 @@
 
 #import "placesMapViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import <SVProgressHUD.h>
 #import "facebookPlaces.h"
 
 @implementation placesMapViewController
@@ -47,7 +48,13 @@
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
     NSLog(@"map moved....");
+    [SVProgressHUD show];
     [facebookPlaces getInstance].currentCenter = mapView.centerCoordinate;
+}
+
+-(void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
+{
+    [SVProgressHUD dismiss];
 }
 
 - (void)updatePlaces {
