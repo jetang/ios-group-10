@@ -17,7 +17,6 @@
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(25.04,121.55);
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 10000, 10000);
     [self.mapView setRegion:region animated:YES];
-    [self updatePlaces];
     [[facebookPlaces getInstance] addObserver:self
                                    forKeyPath:@"places"
                                       options:0
@@ -52,6 +51,11 @@
     }
     [self.mapView removeAnnotations:self.mapView.annotations];
     [self.mapView addAnnotations:annotations];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self updatePlaces];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
