@@ -26,6 +26,7 @@ NSString *apiURL = @"https://graph.facebook.com/search";
             p.currentCenter = CLLocationCoordinate2DMake(0.0, 0.0);
             p.keyword = nil;
             locationManager = [[CLLocationManager alloc] init];
+            p.locationManager = locationManager;
             locationManager.delegate = p;
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
             locationManager.distanceFilter = 50;
@@ -55,7 +56,7 @@ NSString *apiURL = @"https://graph.facebook.com/search";
 
     // go https://developers.facebook.com/tools/explorer to copy an access token then replace xxx
     // Do not git commit your access token here!
-    [parameters setObject:@"CAACEdEose0cBAMqNrE0hRRZBAuPNTcogkiUCKYjIvZAmjRU2sQTCXxXlzGqGMeu0pV7mQQlFFeASd797zveU3sQmmQWI2qSUBp0pQ25RZCakgmSxTY3srzJj3fZCNRqJ13bbxH9wP3sZBKsHJ6ZBnDznYVtrdZAaiDIGIe6VwoMVSmPQqbSLZCwBHPyuhH2HTD4FFKi32OFiSPM0j2cOqbem" forKey:@"access_token"];
+    [parameters setObject:@"CAACEdEose0cBAHyyE1IDuppQGlJCKvwsc51tYIp9yzL5HBdusQJO8Jpn19A3pH56R5CZCNTRrmX5OATnZCuJJSAkuIhKRJVFkYT0UBCDmYZClZBNx8CqZBxwB8sym9ryPLxfBSwgUfmfhpbAoBjGN9BuoaBr44sS5LGzQQFZArSztGA60ovcPZAbjDrnDIdoLT33iVtPeP6mEIRwqnplkIx" forKey:@"access_token"];
 
     [manager GET:apiURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"call place api success!");
@@ -64,6 +65,14 @@ NSString *apiURL = @"https://graph.facebook.com/search";
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"call facebook api error! %@", error);
     }];
+}
+
+- (void)updateLocation:(CLLocationCoordinate2D)newCoordinate
+{
+    NSLog(@"(%f, %f)", newCoordinate.latitude, newCoordinate.longitude);
+    CLLocation *newLocation = [[CLLocation alloc] initWithLatitude:newCoordinate.latitude longitude:newCoordinate.longitude];
+    NSArray *locations = [[NSArray alloc] initWithObjects:newLocation, nil];
+    [self.locationManager.delegate locationManager:nil didUpdateLocations:locations];
 }
 
 #pragma mark - CLLocationManagerDelegate

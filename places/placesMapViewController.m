@@ -8,12 +8,14 @@
 
 #import "placesMapViewController.h"
 #import <CoreLocation/CoreLocation.h>
+#import <CoreLocation/CLLocation.h>
 #import "facebookPlaces.h"
 
 @implementation placesMapViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.mapView.delegate = self;
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(25.04, 121.55);
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 100, 100);
     [self.mapView setRegion:region animated:YES];
@@ -63,4 +65,12 @@
     [[facebookPlaces getInstance] removeObserver:self forKeyPath:@"places"];
 }
 
+- (void)mapViewDidFinishRenderingMap:(MKMapView *)mapView
+                       fullyRendered:(BOOL)fullyRendered
+{
+    double latitude = mapView.region.center.latitude;
+    double longitude = mapView.region.center.longitude;
+    NSLog(@"(lat %f, long %f)", latitude, longitude);
+    [[facebookPlaces getInstance] updateLocation:CLLocationCoordinate2DMake(latitude, longitude)];
+}
 @end
