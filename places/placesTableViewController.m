@@ -20,6 +20,10 @@
                      context:nil];
 }
 
+- (void)dealloc {
+    [[facebookPlaces getInstance] removeObserver:self forKeyPath:@"places"];
+}
+
 - (void)observeValueForKeyPath:(NSString*)keyPath
                       ofObject:(id)object
                         change:(NSDictionary*)change
