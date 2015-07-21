@@ -10,9 +10,9 @@
 #import "AFHTTPRequestOperationManager.h"
 
 // For DEMO
-NSString *apiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
+// NSString *apiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
 // Official API URL
-// NSString *apiURL = @"https://graph.facebook.com/search";
+NSString *apiURL = @"https://graph.facebook.com/search";
 
 @implementation facebookPlaces
 
@@ -43,18 +43,19 @@ NSString *apiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
 
     // match with the application type returned from github.io, perhaps could be removed when move to standard API
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+    // manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
 
     NSMutableDictionary *parameters = [[NSMutableDictionary alloc] init];
     [parameters setObject:@"place" forKey:@"type"];
     [parameters setObject:[NSString stringWithFormat:@"%f,%f", self.currentCenter.latitude, self.currentCenter.longitude] forKey:@"center"];
+    [parameters setObject:@50 forKey:@"limit"];
     if ([self.keyword length]) {
         [parameters setObject:self.keyword forKey:@"q"];
     }
 
     // go https://developers.facebook.com/tools/explorer to copy an access token then replace xxx
     // Do not git commit your access token here!
-    //[parameters setObject:@"xxx" forKey:@"access_token"];
+    [parameters setObject:@"CAACEdEose0cBAMqNrE0hRRZBAuPNTcogkiUCKYjIvZAmjRU2sQTCXxXlzGqGMeu0pV7mQQlFFeASd797zveU3sQmmQWI2qSUBp0pQ25RZCakgmSxTY3srzJj3fZCNRqJ13bbxH9wP3sZBKsHJ6ZBnDznYVtrdZAaiDIGIe6VwoMVSmPQqbSLZCwBHPyuhH2HTD4FFKi32OFiSPM0j2cOqbem" forKey:@"access_token"];
 
     [manager GET:apiURL parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSLog(@"call place api success!");
@@ -74,12 +75,9 @@ NSString *apiURL = @"https://dl.dropboxusercontent.com/u/46004762/sample.json";
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    BOOL willQuery = (self.currentCenter.longitude == 0.0) && (self.currentCenter.longitude == 0.0);
     NSLog(@"didUpdateToLocation: %@", newLocation);
     self.currentCenter = CLLocationCoordinate2DMake(newLocation.coordinate.latitude, newLocation.coordinate.longitude);
-    if (willQuery) {
-        [self queryPlaces];
-    }
+    [self queryPlaces];
 }
 
 @end
