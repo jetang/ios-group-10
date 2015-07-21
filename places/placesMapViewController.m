@@ -17,16 +17,11 @@
     CLLocationCoordinate2D coord = CLLocationCoordinate2DMake(25.04,121.55);
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(coord, 10000, 10000);
     [self.mapView setRegion:region animated:YES];
-    
+    [self updatePlaces];
     [[facebookPlaces getInstance] addObserver:self
                                    forKeyPath:@"places"
                                       options:0
                                       context:nil];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [[facebookPlaces getInstance] queryPlaces];
 }
 
 - (void)observeValueForKeyPath:(NSString*)keyPath
@@ -35,25 +30,28 @@
                        context:(void*)context
 {
     if ([keyPath isEqualToString:@"places"]) {
-        NSMutableArray *annotations = [[NSMutableArray alloc] init];
-
-        for (id data in [facebookPlaces getInstance].places) {
-            NSMutableDictionary *location = data[@"location"];
-            MKPointAnnotation *myAnnotation = [[MKPointAnnotation alloc] init];
-            myAnnotation.coordinate = CLLocationCoordinate2DMake([location[@"latitude"] doubleValue], [location[@"longitude"] doubleValue]);
-            myAnnotation.title = data[@"name"];
-            [annotations addObject:myAnnotation];
-
-            NSLog(@"name %@", data[@"name"]);
-        }
-        
-        [self.mapView addAnnotations:annotations];
+        [self updatePlaces];
     } else {
         [super observeValueForKeyPath:keyPath
                              ofObject:object
                                change:change
                               context:context];
     }
+}
+
+- (void)updatePlaces {
+    NSMutableArray *annotations = [[NSMutableArray alloc] init];
+
+    for (id data in [facebookPlaces getInstance].places) {
+        NSMutableDictionary *location = data[@"location"];
+        MKPointAnnotation *myAnnotation = [[MKPointAnnotation alloc] init];
+        myAnnotation.coordinate = CLLocationCoordinate2DMake([location[@"latitude"] doubleValue], [location[@"longitude"] doubleValue]);
+        myAnnotation.title = data[@"name"];
+        [annotations addObject:myAnnotation];
+        NSLog(@"name %@", data[@"name"]);
+    }
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    [self.mapView addAnnotations:annotations];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
