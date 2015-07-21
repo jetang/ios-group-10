@@ -18,11 +18,15 @@
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(places.currentCenter, 100, 100);
     [self.mapView setRegion:region animated:YES];
     self.mapView.delegate = self;
-    [self updatePlaces];
     [places addObserver:self
              forKeyPath:@"places"
                 options:0
                 context:nil];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self updatePlaces];
 }
 
 - (void)observeValueForKeyPath:(NSString*)keyPath
