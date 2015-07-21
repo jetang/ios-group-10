@@ -58,11 +58,13 @@
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UITableViewCell *cell = sender;
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    NSMutableDictionary *data = [facebookPlaces getInstance].places[indexPath.row];
-    placeDetailViewController *destinationVC = segue.destinationViewController;
-    destinationVC.data = data;
+    if ([segue.identifier isEqualToString:@"tbl2dtl"]) {
+        UITableViewCell *cell = sender;
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        NSMutableDictionary *data = [facebookPlaces getInstance].places[indexPath.row];
+        placeDetailViewController *destinationVC = segue.destinationViewController;
+        destinationVC.data = data;
+    }
 }
 
 @end
